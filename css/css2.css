@@ -1,0 +1,42 @@
+/* 태그 선택자 */
+div {
+    background-color: green;
+}
+
+body {
+    background-color: skyblue;
+}
+
+p {
+    color: blue;
+}
+
+
+/* 클래스 선택자 */
+.red-text {
+    color: red;
+}
+
+.yellow-text {
+    color: yellow;
+}
+
+.big-size {
+    font-size: 50px;
+}
+
+.border {
+    border-style: dashed;
+    border-width: 1px;
+}
+
+p.border {  
+    /* p태그 중에 borde만 먹이는 셀렉터 */
+    border-style:  solid;
+    border-width: 1px;
+}
+
+/* id 셀렉터 */
+#div1 {
+    background-color: antiquewhite;
+}
