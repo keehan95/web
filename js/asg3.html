@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="init()">
+    <style>
+        div {
+            text-align: center;
+        }
+
+        .changeColor {
+            border: solid;
+            color: white;
+            background-color: gray;
+        }
+    </style>
+
+    <script>
+        function changeColor1() {
+            document.getElementById('target1').style.color = "black";
+            document.getElementById('target1').style.background = "white";
+        }
+        function changeColor2() {
+            document.getElementById('target2').style.color = "black";
+            document.getElementById('target2').style.background = "white";
+        }
+        
+        function changeColor3() {
+            document.getElementById('target3').style.color = "black";
+            document.getElementById('target3').style.background = "white";
+        }
+    </script>
+
+    <div>
+        <div style="display: inline;" id="target1" class="changeColor" onclick="changeColor1()">html &nbsp;</div>
+        <div style="display: inline;" id="target2" class="changeColor" onclick="changeColor2()">css &nbsp;</div>
+        <div style="display: inline;" id="target3" class="changeColor" onclick="changeColor3()">javascript</div>
+       
+    </div>
+</body>
+</html>
