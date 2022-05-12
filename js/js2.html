@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        .big-text {
+            font-size: xx-large;
+        }
+
+        .small-text {
+            font-size: small;
+        }
+    </style>
+    <script>
+        function addTag() {
+            document.write('<h1>Hello World</h1>');
+        }
+
+        function getTitle() {
+            let title = document.getElementById('title');
+            //alert(title); //TAG
+            alert(title.textContent); // 내용물
+        }
+
+        function getItems() {
+            
+            let items = document.getElementsByClassName('item');
+
+            // 첫 번째 아이템
+            let firstItem = items[1];
+
+            // 첫 번째 아이템의 내용 얻기
+           // let content = firstItem.textContent;
+
+            // 내용 바꾸기
+            firstItem.textContent = '바보야';
+        }
+    </script>
+
+    <button onclick="addTag()">TAG 추가</button>
+    <button onclick="getTitle()">title 얻기</button>
+    <button onclick="getItems()">바보야</button>
+
+    <ul>
+        <li class="item">1</li>
+        <li class="item">2</li>
+        <li class="item">3</li>
+        <li class="item">4</li>
+        
+    </ul>
+
+    <div id="target" class=".small-text" onclick="changeClassName()">Hello</div>
+
+    <script>
+        let isSmallText = true;
+
+        function changeClassName() {
+            let target = document.getElementById('target');
+        
+            if (isSmallText) {
+                target.className = 'big-text';
+                isSmallText = false;
+            } else {
+                target.className = 'small-text';
+                isSmallText = true;
+            }
+        }
+    </script>
+    <div>
+        <img id="pic" src="https://img.sbs.co.kr/newsnet/etv/upload/2020/03/09/30000644048_1280.jpg" alt="태연" width="200" onclick="changeHtml()">
+    </div>
+    <!-- <div id="pic" onclick="changeHtml()">hello</div> -->
+    <script>
+        function changeHtml() {
+            let pic = document.getElementById('pic');
+            pic.innerHTML = "<h1>뿅!!<h1>";
+        }
+    </script>
+</body>
+</html>
