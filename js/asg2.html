@@ -27,22 +27,22 @@
     <script>
         function changeRed() {
             alert('빨간색으로 변경됩니다');
-            let red = document.getElementById('target1').style.color = "red";
+            let red = document.getElementById('text').style.color = "red";
         }
 
         function changeBlue() {
             alert('파란색으로 변경됩니다');
-            let blue = document.getElementById('target2').style.color = "blue";
+            let blue = document.getElementById('text').style.color = "blue";
         }
 
         function changeGreen() {
             alert('초록색으로 변경됩니다');
-            let blue = document.getElementById('target3').style.color = "green";
+            let blue = document.getElementById('text').style.color = "green";
         }
     </script>
 
     <div>
-        <h1>텍스트</h1>
+        <h1 id="text">텍스트</h1>
         <div style="display: inline;" id="target1" onclick="changeRed()">빨강 &nbsp;</div>
         <div style="display: inline;" id="target2" onclick="changeBlue()">파랑 &nbsp;</div>
         <div style="display: inline;" id="target3" onclick="changeGreen()">초록</div>
