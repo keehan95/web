@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .box {
+            position: relative;
+            vertical-align: middle;
+            text-align: center;
+            line-height: 50px;
+            height: 50px;
+            width: 20%;
+            color: antiquewhite;
+            background-color: gray;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("#html").css("position", "absolute").css("left", "10px");
+            $("#css").css("position", "absolute").css("left", "295px");
+            $("#js").css("position", "absolute").css("left", "580px");
+        });
+        $(function () {
+            $("#html").click(function () {
+                $("#html").css("color", "black").css("background-color", "white").css("border", "1px solid black");
+                $("#css").css("color", "antiquewhite").css("background-color", "gray");
+                $("#js").css("color", "antiquewhite").css("background-color", "gray");
+            });
+        });
+        $(function () {
+            $("#css").click(function () {
+                $("#html").css("color", "antiquewhite").css("background-color", "gray");
+                $("#css").css("color", "black").css("background-color", "white").css("border", "1px solid black");
+                $("#js").css("color", "antiquewhite").css("background-color", "gray");
+            });
+        });
+        $(function () {
+            $("#js").click(function () {
+                $("#html").css("color", "antiquewhite").css("background-color", "gray");
+                $("#css").css("color", "antiquewhite").css("background-color", "gray");
+                $("#js").css("color", "black").css("background-color", "white").css("border", "1px solid black");
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        <div id="html" class="box">HTML</div>
+        <div id="css" class="box">CSS</div>
+        <div id="js" class="box">JS</div>
+    </div>
+</body>
+
+</html>
