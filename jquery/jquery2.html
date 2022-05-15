@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <script>
+        // onload
+        $(function () {
+            $('#all_check').click(function () {
+                $(':checkbox[name=mycheck]').each(function () {
+                    this.checked = true;
+                });
+            });
+            $('#check_number_button').click(function () {
+                if ($(':checkbox[name=mychcek]').is(':checked') == true) {
+                    $('#result').text('OK');
+                } else {
+                    $('#result').text('NO');
+                }
+            });
+
+            // animation
+            $('#box').mouseover(function () {
+                this.animate({
+                    left: '250px'
+                }).animate({
+                    top: '100px'
+                });
+            });
+        });
+    </script>
+    <style>
+        #box {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: rgb(221, 160, 221);
+        }
+    </style>
+    <form action="">
+        <input type="checkbox" name="mycheck" id="" >
+        <input type="checkbox" name="mycheck" id="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="checkbox" name="mycheck" id="">
+        <input type="button" id="all_check_button" value="전체 체크">
+        <input type="button" id="check_number_button" value="체크 확인">
+        <span id="result"></span>
+    </form>
+
+    <div id="box"></div>
+</body>
+</html>
