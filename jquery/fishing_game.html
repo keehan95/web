@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+  <style>
+    #container {
+      position: absolute;
+      width: 100%;
+      height: 600px;
+      top: 50px;
+      border: 1px black solid;
+    }
+
+    html,
+    body {
+      margin: 0;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    #fish {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      bottom: 80px;
+      left: 20px;
+    }
+
+    #sashimi {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      bottom: 80px;
+      left: 20px;
+    }
+
+    #killer {
+      position: absolute;
+      width: 150px;
+      height: 200px;
+      bottom: 30px;
+      right: -200px;
+    }
+
+    #background {
+      position: absolute;
+      width: 200%;
+      height: 100%;
+      background: url("../assets/sea.jpg");
+      background-size: contain;
+      animation-name: sea-slide;
+      animation-duration: 20s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+    }
+
+    #score {
+      position: absolute;
+      color: white;
+      font-size: 2rem;
+      left: 20px;
+      top: 20px;
+    }
+
+    @keyframes sea-slide {
+      from {
+        left: 0px;
+      }
+
+      to {
+        left: -100%;
+      }
+    }
+
+    #gameover {
+        position: absolute;
+        top: 150px;
+        left: 700px;
+    }
+
+    #g_s_b {
+        position: absolute;
+        left: 225px;
+    }
+  </style>
+
+  <div id="container">
+    <div id="background"></div>
+    <img id="fish" src="../assets/fish.gif" alt="fish">
+    <img id="sashimi" src="../assets/sashimi.jpeg" alt="sashimi">
+    <img id="killer" src="../assets/catch.gif" alt="killer">
+    <div id="score">SCORE : 0</div>
+    <div id="gameover">
+        <img src="../assets/gameover.png" alt="gameover"><br>
+        <button id="g_s_b" class="game_start_button">게임 스타트</button>
+    </div>
+  </div>
+
+  
+  
+  <div id="start">
+    <button class="game_start_button">게임 시작</button>
+  </div>
+
+  <script>
+    const WIDTH = 1200;
+    const HEIGHT = 600;
+
+    let fish = $("#fish");
+    let killer = $("#killer");
+
+    // 상태
+    let isJumping = false;
+    let isGameOver = false;
+    let score = 0;
+
+    function jump() {
+      if (isJumping || isGameOver) {
+        return;
+      }
+
+      isJumping = true;
+      fish.animate({ bottom: "+=100px" }, 500)
+        .animate({ bottom: "-=100px" }, 500, function () {
+          isJumping = false;
+        });
+    }
+
+    function moveKiller() {
+      killer.animate({ right: "120%" }, 3000, function () {
+        killer.css({ right: "-100px" });
+
+        if (isGameOver == false) {
+          setTimeout(moveKiller, 1000);
+          score += 100;
+          $("#score").text(`SCORE : ${score}`);
+        }
+      });
+    }
+
+    function sashimi() {
+      let killerLeft = parseInt(killer.css("left").replace("px", ""));
+      let fishLeft = parseInt(fish.css("left").replace("px", ""));
+      let fishRight = fishLeft + 100;
+
+      if (isJumping == false
+        && fishRight > killerLeft
+        && killerLeft > fishLeft
+      ) {
+        isGameOver = true;
+      }
+    }
+
+    function gameOver() {
+      isGameOver = true;
+      killer.stop();
+
+      // 게임오버 화면 보여주고
+      $("#gameover").show();
+      $("#start").hide();
+      $("#container").hide;
+      $("#sashimi").show()
+    }
+
+    function gameStart() {
+      $("#gameover").hide();
+      $("#start").show();
+      $("#container").show;
+      $("#sashimi").hide();
+      isGameOver = false;
+
+      killer.css({ right: "-100px" });
+    }
+
+    $("body").keydown(function (event) {
+      // 마리오 현재 좌표 정보
+      let left = parseInt(fish.css("left").replace("px", ""));
+      let top = parseInt(fish.css("top").replace("px", ""));
+      let right = left + 100;
+      let bottom = top + 100;
+      let move = 25;  // 이동할 픽셀
+
+      switch (event.key) {
+        case " ":
+          jump();
+          break;
+      }
+    });
+
+    $(".game_start_button").click(function () {
+      gameStart();
+    });
+
+    function game() {
+      setTimeout(moveKiller, 1000);
+
+      // 게임 화면 그리기 30frame
+      setInterval(function () {
+        if (isGameOver) {
+          gameOver();
+        } else {
+          // 1초에 30번 그리기
+
+          // 마리오 사망 체크
+          sashimi();
+        }
+      }, 1000 / 30);
+    }
+
+    $(function () {
+      gameStart();
+
+      $(".game_start_button").click(function () {
+        game();
+      });
+    });
+  </script>
+</body>
+
+</html>
