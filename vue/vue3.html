@@ -32,9 +32,6 @@
         realtimeArrivalList: [],  // 전체 데이터
       },
       created: function () {
-        // 통신
-        this.getRealtimeArrivalList();
-
         // 디바운스 적용된 검색 함수 정의
         this.debouncedSearch = _.debounce(this.getRealtimeArrivalList, 1000);
       },
