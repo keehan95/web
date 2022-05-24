@@ -15,25 +15,31 @@
       loadData();
     });
 
+    function moveCommentsPage(i) {
+      window.location.href = `exam5_comments.html?i=${i}`;
+    }
+
     function loadData() {
-      fetch('https://jsonplaceholder.typicode.com/todos/')
+      fetch('https://api.themoviedb.org/3/movie/upcoming?api_key=a64533e7ece6c72731da47c9c8bc691f&language=ko-KR&page=1')
         .then(response => response.json())
-        
+
+
         .then(jsonArray => {
           // for (var i = 0; i < jsonArray.length; i++) {
           //   console.log(json[i].title);
           // }
+          let poster = "https://image.tmdb.org/t/p/w500";
           let list = $("#list");
-          jsonArray.forEach((data, i) => {
+          jsonArray.results.forEach((data, i) => {
             // console.log(data.title);
-            list.append(`<li>${i} : ${data.title}</li>`);
+            list.append(`<div class="card" onclick="moveCommentsPage(${data.id})"><img src="${poster + data.poster_path}"alt="poster" style="width: 20%"><div class="container"><p>${i + 1} : ${data.title}</p></div></div><br><br><br>`);
           });
         });
     }
   </script>
 
 </body>
-<ul id="list">
-</ul>
+<div id="list">
+</div>
 
 </html>
